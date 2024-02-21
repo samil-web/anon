@@ -9,10 +9,9 @@ export default function CreateBlog() {
     // we should use useState for the form data
     // use async await to fetch data from the backend
     const [loading,setLoading] = useState(false)
-    const [title,setTitle] = useState('')
-    const [body,setBody] = useState('')
-    const [priority,setPriority] = useState('')
-    const [userEmail,setUserEmail] = useState('')
+    const [title,setTitle] = useState('new')
+    const [body,setBody] = useState('new')
+    const [priority,setPriority] = useState('low')
     const router = useRouter()
     const handleSubmit = async(e) =>{
         // fetch the data from the backend
@@ -39,8 +38,8 @@ export default function CreateBlog() {
             router.push('/blogs')
     }
   return (
-    <form>
-        <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)} />
+    <form className="flex flex-col justify-center items-center h-full w-full">
+        <input className="h-5 w-5" type="text" value={title} onChange={(e)=>setTitle(e.target.value)} />
         <input type="text" value={body} onChange={(e)=>setBody(e.target.value)} />
         <select value={priority} onChange={(e)=>setPriority(e.target.value)}>
             <option value="high">High</option>
