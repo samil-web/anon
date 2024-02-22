@@ -37,19 +37,20 @@ export default function CreateBlog() {
             router.refresh()
             router.push('/blogs')
     }
-  return (
-    <form className="flex flex-col justify-center items-center h-full w-full">
-        <input className="h-5 w-5" type="text" value={title} onChange={(e)=>setTitle(e.target.value)} />
-        <input type="text" value={body} onChange={(e)=>setBody(e.target.value)} />
+}
+return (
+    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center h-full w-full">
+        <input type="text" placeholder="title" value={title} onChange={(e)=>setTitle(e.target.value)} />
+        <input type="text" placeholder="title" value={body} onChange={(e)=>setBody(e.target.value)} />
         <select value={priority} onChange={(e)=>setPriority(e.target.value)}>
             <option value="high">High</option>
             <option value="medium">Medium</option>
             <option value="low">Low</option>
         </select>
-        <button type = "submit" onClick={(e)=>{e.preventDefault();handleSubmit(e);setLoading(true)}}>
+        <button onClick={(e)=>{e.preventDefault();handleSubmit(e);setLoading(true)}}>
             {loading && <p>Creating...</p>}
             {!loading && <p>Submit</p>}
         </button>
     </form>
   )
-}}
+}
