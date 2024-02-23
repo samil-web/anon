@@ -22,16 +22,9 @@
       "user_email": "peach@netninja.dev"
     },
     {
-      "id": "0e0c",
+      "id": "4",
       "title": "first",
       "body": "first body",
-      "priority": "low",
-      "userEmail": "shamil.alieff@gmail.com"
-    },
-    {
-      "id": "6dde",
-      "title": "new",
-      "body": "new",
       "priority": "low",
       "userEmail": "shamil.alieff@gmail.com"
     }
