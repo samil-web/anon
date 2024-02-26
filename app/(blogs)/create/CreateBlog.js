@@ -35,7 +35,7 @@ export default function CreateBlog() {
         })
         if(res.status === 201){
             router.refresh()
-            router.push('/blogs')
+            router.push('/')
     }
 }
 return (

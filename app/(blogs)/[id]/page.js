@@ -18,6 +18,7 @@ export async function generateMetadata({params}) {
     // metadata will be displayed in the browser
     const data = await fetch('http://localhost:4000/tickets/'+params.id)
     const blog = await data.json()
+    console.log(blog)
     return {
         title:`Blog | ${blog.title}`
     }
