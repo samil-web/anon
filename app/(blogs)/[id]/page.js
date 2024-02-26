@@ -8,11 +8,21 @@ export async function generateStaticParams() {
     // for static generation
     const data = await fetch('http://localhost:4000/tickets')
     const blogs = await data.json()
-  return blogs.map((blog)=>{
+    return blogs.map((blog)=>({
         id:blog.id
-    })
+    }))
 }
-
+async function getBlog(id){
+    const data = await fetch("http://localhost:4000/tickets/"+id,{
+        next:{
+            revalidate: 60
+        }
+    })
+    if(!data.ok){
+        notFound()
+    }
+    return data.json()
+}
 
 export async function generateMetadata({params}) {
     // metadata will be displayed in the browser
@@ -25,17 +35,7 @@ export async function generateMetadata({params}) {
 }
 
 
-async function getBlog(id){
-    const data = await fetch("http://localhost:4000/tickets/"+id,{
-        next:{
-            revalidate: 10
-        }
-    })
-    if(!data.ok){
-        notFound()
-    }
-    return data.json()
-}
+
 
 export default async function Blog({params}) {
     const {id,title,body,priority,userEmail} = await getBlog(params.id)
