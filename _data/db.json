@@ -27,20 +27,6 @@
       "body": "first body",
       "priority": "low",
       "userEmail": "shamil.alieff@gmail.com"
-    },
-    {
-      "id": "1cd8",
-      "title": "new",
-      "body": "new",
-      "priority": "low",
-      "userEmail": "shamil.alieff@gmail.com"
-    },
-    {
-      "id": "91ec",
-      "title": "old",
-      "body": "old",
-      "priority": "medium",
-      "userEmail": "shamil.alieff@gmail.com"
     }
   ]
 }

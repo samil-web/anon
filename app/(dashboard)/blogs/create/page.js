@@ -1,4 +1,4 @@
-import CreateBlog from "./CreateBlog"
+import CreateBlog from "./CreateBlog";
 export default function page() {
   return (
     <main>

@@ -12,6 +12,12 @@ export async function generateStaticParams() {
         id:blog.id
     }))
 }
+
+export async function getStaticProps({ params: {slug} }) {
+    // ↓add 
+    console.log(`Building slug: ${slug}`)
+  }
+
 async function getBlog(id){
     const data = await fetch("http://localhost:4000/tickets/"+id,{
         next:{

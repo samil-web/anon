@@ -1,7 +1,7 @@
 const fetchData = async()=>{
     const res = await fetch('http://localhost:4000/tickets',{
         next:{
-            revalidate: 10
+            revalidate: 0
         }
     })
     const data = await res.json()

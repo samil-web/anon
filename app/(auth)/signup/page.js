@@ -1,8 +1,8 @@
 import { Suspense } from "react"
-import Loading from "./loading"
+import Loading from "../../(dashboard)/loading"
 import {setTimeOut} from "timers/promises" 
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-import Error from "./error";
+import Error from "../../(dashboard)/error";
 
 export default async function page() {
   // resolve a promise after 3 sec
