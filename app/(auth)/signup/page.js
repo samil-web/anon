@@ -1,15 +1,17 @@
 
 'use client'
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import Loading from "../../(dashboard)/loading"
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import Error from "../../(dashboard)/error";
 import AuthForm from "../AuthForm";
 import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-export default async function page() {
+export default function Signup() {
+  const [error,setError] = useState('')
+  const router = useRouter()
   // resolve a promise after 3 sec
   // const delay = async () => {
   //   await new Promise(resolve => setTimeOut(resolve, 3000));
@@ -17,17 +19,19 @@ export default async function page() {
   // };
   // //where to use delay now ?
   // await delay();
-  const handleSubmit = async(e,email,password)=>{
+  async function handleSubmit(e,email,password){
     e.preventDefault() 
     console.log(email,password)
-    router = useRouter()
     const supabase = createClientComponentClient();
-    const {data,error} = await supabase.auth.signUp({
+    const {error} = await supabase.auth.signUp({
       email,
-      password
+      password,
+      options:{
+        emailRedirectTo:`${location.origin}/api/auth/callback`
+      }
     })
     if(error){
-      {error.message}
+      setError(error.message)
     }
     if(!error){
       router.push('/verify')
@@ -36,6 +40,7 @@ export default async function page() {
 
   return (
     <div>
+    {error&&<div>{error}</div>}
           <AuthForm handleSubmit={handleSubmit}/>
     </div>
   )
