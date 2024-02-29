@@ -6,11 +6,8 @@ import { redirect } from "next/navigation";
 
 export default async function layout({children}) {
   const supabase = createServerComponentClient({cookies});
-  const {data,error} = await supabase.auth.getSession()
+  const {data} = await supabase.auth.getSession()
   
-  if(error){
-    console.log(error)
-  }
   if(!data.session){
     redirect('/login')
   }
