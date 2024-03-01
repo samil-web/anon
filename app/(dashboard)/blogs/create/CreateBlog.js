@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
-export default function CreateBlog() {
+export default async function CreateBlog() {
     // should return a form with a title and body
     // and a submit button
     // we should use useState for the form data
@@ -21,22 +21,25 @@ export default function CreateBlog() {
         // return form data
         e.preventDefault()
         setLoading(true)
-        const res = await fetch('http://localhost:4000/tickets',{
+
+        const ticket = {title,body,priority}
+        const res = await fetch('http://localhost:3000/api/tickets',{
             method:'POST',
             headers:{
-                'Content-Type':'application/json'
+                "Content-Type":"application/json"
             },
-            body:JSON.stringify({
-                title,
-                body,
-                priority,
-                userEmail:'shamil.alieff@gmail.com'
-            })
+            body: JSON.stringify(ticket)
         })
-        if(res.status === 201){
+
+        const json = await res.json()
+        if(json.error){
+            console.log(error.message)
+        }
+        if(json.data){
             router.refresh()
-            router.push('/')
-    }
+            router.push('/blogs')
+        }
+        
 }
 return (
     <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center h-full w-full">
